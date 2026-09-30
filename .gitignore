@@ -33,6 +33,7 @@ ios/App/*.xcworkspace/xcuserdata/
 # Release binaries (keep checksums only)
 release/*.apk
 release/*.aab
+release/keystore.properties.txt
 
 # OS
 .DS_Store
