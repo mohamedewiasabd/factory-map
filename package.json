@@ -14,6 +14,7 @@
     "android:build": "npm run build && cap sync android && cd android && ./gradlew assembleDebug",
     "android:release": "npm run build && cap sync android && cd android && ./gradlew assembleRelease bundleRelease",
     "ios:sync": "npm run build && cap sync ios",
+    "tauri": "tauri",
     "deploy:hosting": "npm run build && firebase deploy --only hosting",
     "deploy:rules": "firebase deploy --only firestore:rules",
     "release:all": "npm run lint && npm run build && cap sync android && cd android && ./gradlew assembleDebug assembleRelease bundleRelease"
@@ -56,6 +57,7 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.21.0",
     "typescript": "^7.0.2",
-    "vite-plugin-pwa": "^1.3.0"
+    "vite-plugin-pwa": "^1.3.0",
+    "@tauri-apps/cli": "^2.1.0"
   }
 }
