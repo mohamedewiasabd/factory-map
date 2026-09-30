@@ -53,10 +53,24 @@ jobs:
           EOF
 
       - name: Assemble debug APK
-        run: cd android && ./gradlew assembleDebug
+        run: |
+          for attempt in 1 2 3; do
+            echo "Attempt $attempt: assembleDebug"
+            (cd android && ./gradlew assembleDebug) && exit 0
+            echo "gradle failed (attempt $attempt); retrying"
+            sleep 30
+          done
+          exit 1
 
       - name: Assemble release APK + AAB
-        run: cd android && ./gradlew assembleRelease bundleRelease
+        run: |
+          for attempt in 1 2 3; do
+            echo "Attempt $attempt: assembleRelease bundleRelease"
+            (cd android && ./gradlew assembleRelease bundleRelease) && exit 0
+            echo "gradle failed (attempt $attempt); retrying"
+            sleep 30
+          done
+          exit 1
 
       - name: Verify release signature
         run: |
