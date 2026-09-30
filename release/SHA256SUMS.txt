@@ -1,2 +1,2 @@
-bea8d13672a681d2d7eb8c1a5cf51a732ba116b69d920fb50f9ed4a5d434402c  release/factory-map-1.0.0-release.apk
-2c2ed5e9673a686d1da5ea7d19fd4fc1ccb670f250bbe989db376469ce642f43  release/factory-map-1.0.0-release.aab
+fa972276558e53cc924bace4d9621a4d0ffa91f986a4e12513b87067b0107aa8  release/factory-map-1.0.0-release.apk
+4c6ab84c4310b3a2f0e4733e37ac31a49d9f36a206d17607b389bcaaedc8601a  release/factory-map-1.0.0-release.aab
