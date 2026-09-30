@@ -21,9 +21,11 @@ jobs:
           - platform: macos-15-intel
             args: --target x86_64-apple-darwin
             targets: x86_64-apple-darwin
+            bundles: app
           - platform: macos-26
             args: --target aarch64-apple-darwin
             targets: aarch64-apple-darwin
+            bundles: ""
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
@@ -54,7 +56,10 @@ jobs:
         shell: bash
         run: |
           ARGS="${{ matrix.args }}"
-          if [ -n "$ARGS" ]; then
+          BUNDLES="${{ matrix.bundles }}"
+          if [ -n "$BUNDLES" ]; then
+            npm run tauri -- build $ARGS --bundles "$BUNDLES"
+          elif [ -n "$ARGS" ]; then
             npm run tauri -- build $ARGS
           else
             npm run tauri -- build
