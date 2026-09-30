@@ -1,0 +1,6 @@
+{
+  "name": "Factory Map - خريطة المصانع",
+  "description": "منصة تفاعلية لاستكشاف المصانع والبحث الجغرافي والقطاعي، إدارة المبيعات والمشتريات، والمحادثات التجارية الذكية بالذكاء الاصطناعي.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

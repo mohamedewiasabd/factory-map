@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+server.js
+.tsservercache/
+
+# Vite / TS
+*.local
+*.log
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# Capacitor / native (generated artifacts stay out; android/ and ios/ ARE tracked as source)
+# Local keystore secrets are gitignored but the keystore.properties template is tracked
+android/keystore/factorymap-release.keystore
+*.keystore
+*.jks
+android/.gradle/
+android/local.properties
+android/app/build/
+android/build/
+android/capacitor-cordova-android-plugins/build/
+ios/App/Pods/
+ios/App/Podfile.lock
+ios/App/DerivedData/
+ios/App/*.xcworkspace/xcuserdata/
+
+# Release binaries (keep checksums only)
+release/*.apk
+release/*.aab
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.development.local

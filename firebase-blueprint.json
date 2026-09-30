@@ -1,0 +1,174 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role and contact information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "role": { "type": "string", "enum": ["admin", "owner", "sales", "purchasing", "buyer"] },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["uid", "email", "displayName", "role"]
+    },
+    "Factory": {
+      "title": "Factory",
+      "description": "Industrial manufacturing facility profile and officers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "ownerId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 3000 },
+        "sectors": { "type": "array" },
+        "city": { "type": "string", "maxLength": 100 },
+        "industrialArea": { "type": "string", "maxLength": 150 },
+        "address": { "type": "string", "maxLength": 300 },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "salesName": { "type": "string", "maxLength": 100 },
+        "salesEmail": { "type": "string", "maxLength": 150 },
+        "salesPhone": { "type": "string", "maxLength": 50 },
+        "salesWhatsapp": { "type": "string", "maxLength": 50 },
+        "purchasingName": { "type": "string", "maxLength": 100 },
+        "purchasingEmail": { "type": "string", "maxLength": 150 },
+        "purchasingPhone": { "type": "string", "maxLength": 50 },
+        "purchasingWhatsapp": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "imageBase64": { "type": "string", "maxLength": 200000 },
+        "rating": { "type": "number" },
+        "reviewsCount": { "type": "number" },
+        "aiAutoResponderEnabled": { "type": "boolean" },
+        "aiAutoResponderPrompt": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["name", "ownerId", "status", "city", "lat", "lng"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "User review and rating for a factory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "factoryId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "userName": { "type": "string", "maxLength": 128 },
+        "rating": { "type": "number" },
+        "comment": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["factoryId", "userId", "userName", "rating", "comment"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Purchase order or RFQ from a buyer to a factory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "factoryId": { "type": "string", "maxLength": 128 },
+        "factoryName": { "type": "string", "maxLength": 200 },
+        "buyerId": { "type": "string", "maxLength": 128 },
+        "buyerName": { "type": "string", "maxLength": 128 },
+        "buyerPhone": { "type": "string", "maxLength": 50 },
+        "buyerEmail": { "type": "string", "maxLength": 150 },
+        "title": { "type": "string", "maxLength": 200 },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string", "maxLength": 50 },
+        "targetPrice": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["pending", "accepted", "in_production", "shipped", "delivered", "cancelled"] },
+        "source": { "type": "string", "enum": ["manual", "ai_chat"] },
+        "conversationId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["factoryId", "buyerId", "title", "status"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Chat thread between users, team members, or clients and factories",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "enum": ["internal_team", "support_admin", "b2b_factory"] },
+        "factoryId": { "type": "string", "maxLength": 128 },
+        "factoryName": { "type": "string", "maxLength": 200 },
+        "targetRole": { "type": "string", "enum": ["sales", "purchasing", "support", "team"] },
+        "participants": { "type": "array" },
+        "lastMessage": { "type": "string", "maxLength": 1000 },
+        "lastMessageAt": { "type": "string", "maxLength": 64 },
+        "isAiActive": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["type", "participants"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Individual message within a conversation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "conversationId": { "type": "string", "maxLength": 128 },
+        "senderId": { "type": "string", "maxLength": 128 },
+        "senderName": { "type": "string", "maxLength": 128 },
+        "senderRole": { "type": "string", "maxLength": 50 },
+        "text": { "type": "string", "maxLength": 3000 },
+        "isAi": { "type": "boolean" },
+        "orderProposal": { "type": "object" },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["conversationId", "senderId", "text"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Alert notification for a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "message": { "type": "string", "maxLength": 1000 },
+        "type": { "type": "string", "enum": ["order_status", "factory_approval", "new_message", "review", "system"] },
+        "linkId": { "type": "string", "maxLength": 128 },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "title", "message", "read"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "User profile records"
+    },
+    "/factories/{factoryId}": {
+      "schema": { "$ref": "Factory" },
+      "description": "Factory profiles registered by users"
+    },
+    "/factories/{factoryId}/reviews/{reviewId}": {
+      "schema": { "$ref": "Review" },
+      "description": "Reviews for a specific factory"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "B2B Purchase orders and quote requests"
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "Conversation" },
+      "description": "Chat channels for B2B, internal team, and support"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "Message" },
+      "description": "Messages inside a conversation"
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "Notification" },
+      "description": "Real-time user alerts"
+    }
+  }
+}
